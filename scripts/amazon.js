@@ -85,6 +85,16 @@ buttons.forEach((button, index) => {
        })
     }
 
+
+let totalQuantity = 0;
+cart.forEach((item) => {
+  totalQuantity+=item.quantity;
+})
+
+document.querySelector('.js-cart-quantity').innerHTML = totalQuantity
+
+console.log(totalQuantity)
+
     console.log(cart)
   }) 
 })
