@@ -45,7 +45,8 @@ products.forEach((product) => {
             Added
           </div>
 
-          <button class="add-to-cart-button button-primary">
+          <button class="add-to-cart-button button-primary js-add-to-cart"
+          data-product-id="${product.id}"> 
             Add to Cart
           </button>
         </div>`
@@ -55,3 +56,36 @@ products.forEach((product) => {
 console.log(productsHTML);
 
 document.querySelector('.js-products-grid').innerHTML = productsHTML
+
+const buttons = document.querySelectorAll('.js-add-to-cart')
+buttons.forEach((button, index) => {
+  button.addEventListener('click',() => {
+    console.log(`Added product ${index}`)
+    /*cart.push({
+      image: products[index].image
+    })*/ //Ovako bi ja napravio, ali u projektu koristimo dataset za dohvacanje pojedinog elementa pa cu primjer i ideju pustiti samo zakomentiranu
+
+    
+    const productId = button.dataset.productId; //kebabCase to camelCase convert
+    let matchingItem;
+
+    cart.forEach((item) => {
+      if(productId === item.productId) {
+        matchingItem = item;
+
+      }
+    })
+
+    if (matchingItem) {
+      matchingItem.quantity++; 
+    } else {
+      cart.push({
+        productId: productId,
+        quantity: 1
+       })
+    }
+
+    console.log(cart)
+  }) 
+})
+
