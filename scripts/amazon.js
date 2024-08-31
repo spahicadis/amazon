@@ -1,4 +1,5 @@
-import { cart } from "../data/cart.js" //moze i npr as customerCart, pa koristimo onda naziv cart za nesto drugo 
+import { cart } from "../data/cart.js" //moze i npr as customerCart, pa koristimo onda naziv cart za nesto drugo
+import { products } from "../data/products.js";
 
 let productsHTML = '';
 products.forEach((product) => {
