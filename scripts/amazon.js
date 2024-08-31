@@ -1,5 +1,6 @@
-import { cart } from "../data/cart.js" //moze i npr as customerCart, pa koristimo onda naziv cart za nesto drugo
+import { cart, addToCart } from "../data/cart.js" //moze i npr as customerCart, pa koristimo onda naziv cart za nesto drugo
 import { products } from "../data/products.js";
+
 
 let productsHTML = '';
 products.forEach((product) => {
@@ -59,6 +60,18 @@ console.log(productsHTML);
 
 document.querySelector('.js-products-grid').innerHTML = productsHTML
 
+function updateCartQuantity() {
+  let totalQuantity = 0;
+  cart.forEach((item) => {
+  totalQuantity+=item.quantity;
+})
+
+document.querySelector('.js-cart-quantity').innerHTML = totalQuantity
+
+console.log(totalQuantity)
+  
+}
+
 const buttons = document.querySelectorAll('.js-add-to-cart')
 buttons.forEach((button, index) => {
   button.addEventListener('click',() => {
@@ -66,36 +79,9 @@ buttons.forEach((button, index) => {
     /*cart.push({
       image: products[index].image
     })*/ //Ovako bi ja napravio, ali u projektu koristimo dataset za dohvacanje pojedinog elementa pa cu primjer i ideju pustiti samo zakomentiranu
-
-    
-    const productId = button.dataset.productId; //kebabCase to camelCase convert
-    let matchingItem;
-
-    cart.forEach((item) => {
-      if(productId === item.productId) {
-        matchingItem = item;
-
-      }
-    })
-
-    if (matchingItem) {
-      matchingItem.quantity++; 
-    } else {
-      cart.push({
-        productId: productId,
-        quantity: 1
-       })
-    }
-
-
-let totalQuantity = 0;
-cart.forEach((item) => {
-  totalQuantity+=item.quantity;
-})
-
-document.querySelector('.js-cart-quantity').innerHTML = totalQuantity
-
-console.log(totalQuantity)
+  const productId = button.dataset.productId; //kebabCase to camelCase convert
+  addToCart(productId);
+  updateCartQuantity();
 
     console.log(cart)
   }) 
