@@ -1,5 +1,6 @@
-let productsHTML = '';
+import { cart } from "../data/cart.js" //moze i npr as customerCart, pa koristimo onda naziv cart za nesto drugo 
 
+let productsHTML = '';
 products.forEach((product) => {
   productsHTML += `  <div class="product-container"> 
           <div class="product-image-container">
