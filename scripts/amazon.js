@@ -86,7 +86,7 @@ buttons.forEach((button, index) => {
   addToCart(productId);
   updateCartQuantity();
 
-    console.log(cart)
+  console.log(cart)
   }) 
 })
 
