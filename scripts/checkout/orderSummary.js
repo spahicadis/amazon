@@ -7,19 +7,8 @@ import dayjs from 'https://unpkg.com/dayjs@1.11.10/esm/index.js';
 import { deliveryOptions, getDeliveryOption } from '../../data/deliveryOptions.js'
 import { renderPaymentSummary } from "./paymentSummary.js";
 
-hello()
-
-
 export function renderOrderSummary() {
-
-
   let cartSummaryHTML = ''
-
-
-  const today = dayjs();
-  const deliveryDate = today.add(7, 'days');
-  console.log(deliveryDate.format('dddd, MMMM D'));
-
 
   cart.forEach((cartItem) => {  //deduplicating or normalizing the data
     const productId = cartItem.productId;
@@ -149,6 +138,7 @@ export function renderOrderSummary() {
         console.log(container)
 
         container.remove()
+        renderPaymentSummary()
         
       })
     })
