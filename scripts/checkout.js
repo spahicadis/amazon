@@ -1,4 +1,4 @@
-import { cart, removeFromCart } from "../data/cart.js";
+import { cart, removeFromCart, updateDeliveryOption } from "../data/cart.js";
 import { products } from "../data/products.js";
 import { formatCurrency } from "../utils/money.js";
 import { hello } from 'https://unpkg.com/supersimpledev@1.0.1/hello.esm.js';
@@ -12,7 +12,7 @@ hello()
 
 
 let cartSummaryHTML = ''
-let optionNumber = 1
+
 
 const today = dayjs();
 const deliveryDate = today.add(7, 'days');
@@ -86,19 +86,19 @@ const dateString = deliveryDate.format('dddd, MMMM D')
                 <div class="delivery-options-title">
                   Choose a delivery option:
                 </div>
-                ${deliveryOptionsHTML(optionNumber, cartItem)}
+                ${deliveryOptionsHTML(matchingProduct, cartItem)}
               </div>
             </div>
           </div>
   
   `
-  ++optionNumber
+  
 
   console.log(cartItem.deliveryOptionId)
   
 });
 
-function deliveryOptionsHTML(optionNumber, cartItem) {
+function deliveryOptionsHTML(matchingProduct, cartItem) {
 let HTML = ''
 
   deliveryOptions.forEach((deliveryOption) => {
@@ -117,11 +117,13 @@ console.log(`Comparing: deliveryOption.id = ${deliveryOption.id}, cartItem.deliv
 
 
 HTML+= `
-     <div class="delivery-option">
+     <div class="delivery-option js-delivery-option" 
+     data-product-id="${matchingProduct.id}"
+     data-delivery-option-id="${deliveryOption.id}">
         <input type="radio"
           ${isDeliveryOption ? 'checked' : ''}
           class="delivery-option-input"
-          name="delivery-option-${optionNumber}">
+          name="delivery-option-${matchingProduct.id}">
         <div>
           <div class="delivery-option-date">
             ${dateString}
@@ -159,6 +161,18 @@ document.querySelectorAll('.js-delete-link')
       
     })
   })
+
+
+  document.querySelectorAll('.js-delivery-option')
+    .forEach((element) => {
+      element.addEventListener('click', () => {
+        const {productId, deliveryOptionId } = element.dataset
+       
+
+        console.log(productId, deliveryOptionId)
+        updateDeliveryOption(productId, deliveryOptionId)
+      })
+    })
 
   
 
