@@ -1,6 +1,8 @@
 import { addToCart, cart, loadFromStorage } from "../../data/cart.js";
-import { deliveryOptions } from "../../data/deliveryOptions.js";
 
+
+
+// Unit tests -> 
 
 describe('test suite: addToCart', () => {
   it('adds an existing product to the cart', () => {
