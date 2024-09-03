@@ -1,4 +1,4 @@
-function Cart(localStorageKey) {  //PascalCase
+function Cart(localStorageKey) {  //PascalCase  //one way for generating objects, each object generated from the class is called instance of class
   const cart = {
     cartItems:  undefined,
   
@@ -98,6 +98,7 @@ businessCart.loadFromStorage();
 
 console.log(cart);
 console.log(businessCart);
+console.log(businessCart instanceof Cart);
 
 
 
