@@ -1,6 +1,11 @@
 class Cart { //object generator
-  cartItems = undefined;
-  localStorageKey = undefined;
+  cartItems;
+  localStorageKey;
+
+  constructor(localStorageKey) {
+    this.localStorageKey = localStorageKey; //method must be named construcot, should not return anything
+    this.loadFromStorage();
+  }
 
   loadFromStorage() {
     this.cartItems = 
@@ -81,17 +86,11 @@ class Cart { //object generator
 }
 
 
-const cart = new Cart();
-const businessCart = new Cart();
+const cart = new Cart('cart-oop');
+const businessCart = new Cart('cart-business');
 
 
 cart.loadFromStorage();
-
-cart.localStorageKey = 'cart-oop';
-businessCart.localStorageKey = 'cart-business';
-
-cart.loadFromStorage();
-businessCart.loadFromStorage();
 
 console.log(cart);
 console.log(businessCart);
