@@ -2,17 +2,11 @@ import { renderOrderSummary } from "./checkout/orderSummary.js";
 import { renderPaymentSummary } from "./checkout/paymentSummary.js";
 // import '../data/cart-class.js';
 //import '../data/backend-practice.js'
-import { loadProducts } from "../data/products.js";
+import { loadProducts, loadProductsFetch } from "../data/products.js";
 import { loadCart } from "../data/cart.js";
 
 Promise.all([
-  new Promise((resolve) => { //allows javascript to do multiple things at the same time
-    console.log('start promise')
-    loadProducts(() => {
-      resolve('value1'); //control when to go to the next step
-    });//ono sto damo resolvu bit ce spremljeno u parametar kod then
-  
-  }),
+ loadProductsFetch(),
   new Promise((resolve) => {
     loadCart(() => {
       resolve();
