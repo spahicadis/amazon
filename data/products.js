@@ -127,11 +127,13 @@ export function loadProductsFetch() {
         return new Clothing(productDetails)
       }
       return new Product(productDetails);
-      });;
+      });
 
       console.log('load products')
     
-  })
+  })/*.catch((error) => {
+    console.log('Unexpected error. Please try again later.', error);
+  })*/
 
   return promise; //znaci mozemo returnati promise iz funkcije i tako nastavii koristiti kasnije
 }
@@ -156,9 +158,15 @@ export function loadProducts(fun) {
       fun(); //callback
   })
 
+  xhr.addEventListener('error', (error) => {
+    console.log('Unexpected error. Please try again later.');
+  });
+
   xhr.open('GET', 'https://supersimplebackend.dev/products');
   xhr.send();
 }
+
+
 
 
 

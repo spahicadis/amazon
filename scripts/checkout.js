@@ -8,16 +8,27 @@ import { loadCart } from "../data/cart.js";
 
 
 async function loadOnPage() {
-  await loadProductsFetch();
 
-  const value = await new Promise((resolve) => {
+  try {
+
+    //throw('error1');
+
+    await loadProductsFetch();
+
+  const value = await new Promise((resolve, reject) => {
     loadCart(() => {
+      //reject('error3');
       resolve();
       
     });
   })
 
-  console.log(value)
+  } catch (error) {
+    console.log('Unexpected error. Please try again later.', error)
+  }
+  
+
+  
 
   renderOrderSummary();
   renderPaymentSummary();
