@@ -62,6 +62,43 @@ class Clothing extends Product {
   }
 };
 
+/*
+const date = new Date()
+console.log(date);
+console.log(date.toLocaleTimeString());
+*/
+
+/*
+console.log(this);
+
+const object2 = { //if we are inside of method we can use this and it will point to the outdiste object, but if we are in object and use this theres no object to point to ,this = undefined
+  a: 2,
+  b: this.a
+}
+*/
+/*
+function logThis() {
+  console.log(this); //inside a function we can change "this" to whatever we want, in regular function this always have a undefined;
+}
+
+logThis()
+logThis.call('hello')
+
+this
+const object3 = { //arrow functions do not change the value of "this"
+  method: () => {
+    console.log(this);  
+  [1, 2, 3].forEach(() => {
+    console.log(this)
+  });
+  }
+}
+*/ 
+
+
+
+
+
 const product1 = new Product( {
   id: "e43638ce-6aa0-4b85-b27f-e1d07eb678c6",
   image: "images/products/athletic-cotton-socks-6-pairs.jpg",
